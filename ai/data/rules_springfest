@@ -1,0 +1,37 @@
+version: "3.1"
+rules:
+
+- rule: Greet the user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Respond to event details
+  steps:
+  - intent: ask_event_details
+  - action: utter_event_details
+
+- rule: Respond to shops inquiry
+  steps:
+  - intent: ask_about_shops
+  - action: utter_about_shops
+
+- rule: Respond to emergency info
+  steps:
+  - intent: ask_emergency_info
+  - action: utter_emergency_info
+
+- rule: Respond to sub-events
+  steps:
+  - intent: ask_sub_events
+  - action: utter_sub_events
+
+- rule: Respond to general winner inquiry
+  steps:
+  - intent: ask_winner
+  - action: utter_winners_general
+
+- rule: Respond to last year's winners
+  steps:
+  - intent: ask_last_year_winners
+  - action: utter_winners_general

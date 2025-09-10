@@ -111,20 +111,3 @@ stories:
 
 
 
-data = {
-  event title: "",
-  brief-intro: "",
-  subevents: [
-    {
-      title: "",
-      data: "".
-      descr: ""
-    },
-    {
-      title: "",
-      data: "".
-      descr: ""
-    },
-     ...
-  ]
-}
