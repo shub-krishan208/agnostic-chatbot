@@ -1,0 +1,130 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: Fee query with all info provided
+  steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: fee
+        entities:
+          - course: "B.Tech"
+          - department: "computer science"
+          - degree: "bachelor's"
+      - action: utter_fee_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+- story: Fee query with missing info - slot filling
+  steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: fee
+        entities:
+          - course: "B.Tech"
+      - action: fee_form
+      - active_loop: fee_form
+      - intent: ask_department
+        entities:
+          - department: "electrical engineering"
+      - action: fee_form
+      - active_loop: fee_form
+      - intent: ask_degree
+        entities:
+          - degree: "bachelor's"
+      - action: fee_form
+      - active_loop: null
+      - action: utter_fee_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+- story: Scholarship query
+  steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: scholarship
+      - action: utter_scholarship_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+- story: Timetable query
+  steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: timetable
+      - action: utter_timetable_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+- story: Timetable query with department and course
+  steps:
+      - intent: timetable
+        entities:
+          - course: "B.Tech"
+          - department: "CSE"
+      - action: utter_timetable_info
+
+- story: ask course path
+  steps:
+  - intent: ask_course
+  - action: utter_ask_course
+
+
+- story: ask course flow
+  steps:
+  - intent: fee
+  - action: utter_ask_course
+  - intent: ask_course
+  - action: utter_ask_department
+  - intent: ask_department
+  - action: utter_ask_degree
+  - intent: ask_degree
+  - action: utter_ask_fee_structure
+
+
+
+
+data = {
+  event title: "",
+  brief-intro: "",
+  subevents: [
+    {
+      title: "",
+      data: "".
+      descr: ""
+    },
+    {
+      title: "",
+      data: "".
+      descr: ""
+    },
+     ...
+  ]
+}

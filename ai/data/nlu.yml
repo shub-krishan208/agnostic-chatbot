@@ -1,0 +1,173 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - yes
+    - yup
+    - correct
+    - of course
+    - that's right
+    - sure
+    - indeed
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent:  out_of_scope
+  examples: |
+    - asdfasdfasdf
+    - blah blah
+    - what is the square root of potato
+    - gibberish words here
+
+- intent: fee
+  examples: |
+    - how much is the fee
+    - what is the college fee
+    - tell me about the fees
+    - is there a tuition fee
+    - what's the fee for this semester
+    - can you tell me the fee structure
+    - what is the course fee for [B.Tech](course)
+    - how much do I have to pay
+    - what are the fees
+    - I want to know about the fees
+    - tell me about the fees for [computer science](department)
+    - what is the fee for a [bachelor's](degree) degree?
+    - how much is the fee for a [B.Tech](course) in [computer science](department)
+    - what's the fee for a [B.Tech](course) in [computer science](department)?
+    - I want to know the fee structure for [B.Tech](course)
+    - fee details please
+    - can you tell me the fee for a [master's](degree) program?
+    - how much is the fee for [PhD](degree)?
+    - fee structure for [MBA](degree) please
+
+- intent: scholarship
+  examples: |
+    - do you have any scholarships
+    - tell me about the scholarship
+    - are there any scholarships available
+    - how can I apply for a scholarship
+    - what are the scholarship criteria
+    - I need information on scholarships
+    - is there a scholarship for [merit](scholarship_type)
+    - do you offer [sports](scholarship_type) scholarships?
+    - what about [need-based](scholarship_type) scholarships?
+    - tell me about [cultural](scholarship_type) scholarships
+    - what about sports scholarships
+    - I'm looking for a scholarship
+    - tell me about the scholarship options
+
+- intent: timetable
+  examples: |
+    - what is the timetable
+    - show me the class schedule
+    - what are the timings for classes
+    - can I see the timetable
+    - what is the schedule for [CSE](department)
+    - can you give me the timetable for [mechanical engineering](department)
+    - what's the schedule for a [B.Tech](course)
+    - timetable for [B.Tech](course) [third year](year)
+    - show me the timetable for [first year](year)
+    - what is the schedule for [second year](year) [B.Tech](course)?
+    - give me the [final year](year) [MSc](course) timetable
+    - show me the schedule for [B.Tech](course) in [ECE](department)
+
+- intent: ask_course
+  examples: |
+    - which course are you asking about
+    - tell me the course name
+
+- intent: ask_department
+  examples: |
+    - which department is that
+    - what's the department name
+
+- intent: ask_degree
+  examples: |
+    - what degree are you interested in
+    - which degree are you asking about    
