@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
-import { Send } from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Languages, Send } from "lucide-react";
 
 // Interface defining the structure of a chat message
 interface Message {
   id: number;
   text: string;
+  language: string;
+  sessionid: string;
   isUser: boolean;
   timestamp: Date;
 }
@@ -18,23 +20,25 @@ const ChatBot = () => {
     {
       id: 1,
       text: "Hello! I'm your AI assistant. How can I help you today?",
+      language: "en",
+      sessionid: "s0",
       isUser: false,
       timestamp: new Date(),
     },
   ]);
-  
+
   // State to track the current input value
-  const [inputValue, setInputValue] = useState('');
-  
+  const [inputValue, setInputValue] = useState("");
+
   // State to show loading indicator while waiting for bot response
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Reference to the messages container for auto-scrolling
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to the latest message when messages array changes
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -42,27 +46,61 @@ const ChatBot = () => {
   }, [messages]);
 
   // Function to send message to backend API and handle response
-  const sendMessageToAPI = async (message: string): Promise<string> => {
+  const sendMessageToAPI = async (message: {
+    sender: string;
+    message: string;
+  }): Promise<string> => {
     try {
-      const response = await fetch('http://localhost:5000/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message }),
-      });
+      const response = await fetch(
+        "http://localhost:5005/webhooks/rest/webhook",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(message),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      return data.response || 'Sorry, I didn\'t receive a proper response.';
+      return data[0].text || "Sorry, I didn't receive a proper response.";
     } catch (error) {
-      console.error('Error sending message to API:', error);
-      return 'Sorry, I\'m having trouble connecting to the server. Please try again later.';
+      console.error("Error sending message to API:", error);
+      return "Sorry, I'm having trouble connecting to the server. Please try again later.";
     }
   };
+
+  // const sendBotMessageToAPI = async (message: {
+  //   sender: string;
+  //   text: string;
+  // }): Promise<string> => {
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost:5005/webhooks/rest/webhook ",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(message),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+
+  //     const data = await response.json();
+  //     return data || "Sorry, I didn't receive a proper response.";
+  //   } catch (error) {
+  //     console.error("Error sending message to API:", error);
+  //     return "Sorry, I'm having trouble connecting to the server. Please try again later.";
+  //   }
+  // };
 
   // Handle sending a new message
   const handleSendMessage = async () => {
@@ -72,39 +110,56 @@ const ChatBot = () => {
     const userMessage: Message = {
       id: messages.length + 1,
       text: inputValue.trim(),
+      language: "en",
+      sessionid: "s0",
       isUser: true,
       timestamp: new Date(),
     };
 
+    const messagePayload = {
+      sender: "test_user",
+      message: userMessage.text,
+    };
     // Add user message to chat
-    setMessages(prev => [...prev, userMessage]);
-    
+    setMessages((prev) => [...prev, userMessage]);
+
     // Clear input field immediately
-    setInputValue('');
-    
+    setInputValue("");
+
     // Show loading state
     setIsLoading(true);
 
     // Send message to API and get bot response
-    const botResponse = await sendMessageToAPI(userMessage.text);
-    
+    const botResponse = await sendMessageToAPI(messagePayload);
+
     const botMessage: Message = {
       id: messages.length + 2,
       text: botResponse,
+      language: "en",
+      sessionid: "s0",
       isUser: false,
       timestamp: new Date(),
     };
 
     // Add bot response to chat
-    setMessages(prev => [...prev, botMessage]);
-    
+    setMessages((prev) => [...prev, botMessage]);
+
+    // const botPayload = {
+    //   text: botMessage.text,
+    //   language: botMessage.language,
+    //   user_message: botResponse.id,
+    // };
+
+    // send botresponse to backend
+
+    // const sentBot = await sendBotMessageToAPI(botPayload);
     // Hide loading state
     setIsLoading(false);
   };
 
   // Handle Enter key press in input field
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSendMessage();
     }
   };
@@ -126,28 +181,34 @@ const ChatBot = () => {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${
+              message.isUser ? "justify-end" : "justify-start"
+            }`}
           >
             <Card
               className={`max-w-[80%] p-4 transition-all duration-300 hover:scale-[1.02] ${
                 message.isUser
-                  ? 'bg-chat-userBubble text-chat-userText shadow-lg'
-                  : 'bg-chat-botBubble text-chat-botText border shadow-md'
+                  ? "bg-chat-userBubble text-chat-userText shadow-lg"
+                  : "bg-chat-botBubble text-chat-botText border shadow-md"
               }`}
             >
               <p className="text-sm leading-relaxed">{message.text}</p>
-              <span className={`text-xs mt-2 block opacity-70 ${
-                message.isUser ? 'text-chat-userText' : 'text-muted-foreground'
-              }`}>
-                {message.timestamp.toLocaleTimeString([], { 
-                  hour: '2-digit', 
-                  minute: '2-digit' 
+              <span
+                className={`text-xs mt-2 block opacity-70 ${
+                  message.isUser
+                    ? "text-chat-userText"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {message.timestamp.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })}
               </span>
             </Card>
           </div>
         ))}
-        
+
         {/* Loading indicator for bot response */}
         {isLoading && (
           <div className="flex justify-start">
@@ -155,15 +216,23 @@ const ChatBot = () => {
               <div className="flex items-center space-x-2">
                 <div className="animate-pulse flex space-x-1">
                   <div className="h-2 w-2 bg-primary rounded-full animate-bounce"></div>
-                  <div className="h-2 w-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="h-2 w-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div
+                    className="h-2 w-2 bg-primary rounded-full animate-bounce"
+                    style={{ animationDelay: "0.1s" }}
+                  ></div>
+                  <div
+                    className="h-2 w-2 bg-primary rounded-full animate-bounce"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
                 </div>
-                <span className="text-xs text-muted-foreground">Thinking...</span>
+                <span className="text-xs text-muted-foreground">
+                  Thinking...
+                </span>
               </div>
             </Card>
           </div>
         )}
-        
+
         {/* Auto-scroll target */}
         <div ref={messagesEndRef} />
       </div>
@@ -187,7 +256,7 @@ const ChatBot = () => {
             <Send className="h-4 w-4" />
           </Button>
         </div>
-        
+
         {/* Usage tip */}
         <p className="text-xs text-muted-foreground text-center mt-2">
           Press Enter to send • API endpoint: http://localhost:5000/chat

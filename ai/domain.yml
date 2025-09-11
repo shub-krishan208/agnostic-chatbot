@@ -33,7 +33,6 @@ entities:
   - event_type
   - competition
 
-
 slots:
   event_name:
     type: text
@@ -45,75 +44,75 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: course
+      - type: from_entity
+        entity: course
   department:
     type: text
     influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: department
+      - type: from_entity
+        entity: department
   degree:
     type: text
     influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: degree
+      - type: from_entity
+        entity: degree
 
 responses:
   utter_default:
-  - text: "Sorry, I didn't get it. Could you rephrase it?"
+    - text: "Sorry, I didn't get it. Could you rephrase it?"
 
   utter_greet:
-  - text: "Hey! How are you?"
-  - text: "Hello! How can I help you with information about the fest?"
-  - text: "Hi there! What would you like to know about the event?"
+    - text: "Hey! How are you?"
+    - text: "Hello! How can I help you with information about the fest?"
+    - text: "Hi there! What would you like to know about the event?"
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Did that help you?"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I am a bot, powered by Rasa."
 
   utter_ask_course:
-  - text: "Which course are you interested in?"
-  - text: "Please tell me the course name."
+    - text: "Which course are you interested in?"
+    - text: "Please tell me the course name."
 
   utter_ask_department:
-  - text: "Please specify the department."
-  - text: "Which department is that?"
+    - text: "Please specify the department."
+    - text: "Which department is that?"
 
   utter_ask_degree:
-  - text: "What degree are you interested in? e.g., B.Tech, M.Tech"
+    - text: "What degree are you interested in? e.g., B.Tech, M.Tech"
 
   utter_ask_slots:
-  - text: "I need a bit more information. What course and department are you asking about?"
+    - text: "I need a bit more information. What course and department are you asking about?"
 
   utter_ask_fee_structure:
-  - text: "The fee for {course} is approximately $10,000 per year, but this can vary based on your selected department. Could you please specify the department?"
-  - text: "To give you an exact fee, I need to know the department. Could you tell me the department for {course}?"
+    - text: "The fee for {course} is approximately $10,000 per year, but this can vary based on your selected department. Could you please specify the department?"
+    - text: "To give you an exact fee, I need to know the department. Could you tell me the department for {course}?"
 
   utter_fee_info:
-  - text: "The fee for a {degree} in {course} for the {department} department is approximately $12,000 per year, which includes tuition and other charges. Please check our official website for the most accurate details."
-  - text: "The fee for the {department} department for the {course} course is roughly $11,500 per year. For specific details, it is best to consult the admissions office."
+    - text: "The fee for a {degree} in {course} for the {department} department is approximately $12,000 per year, which includes tuition and other charges. Please check our official website for the most accurate details."
+    - text: "The fee for the {department} department for the {course} course is roughly $11,500 per year. For specific details, it is best to consult the admissions office."
 
   utter_scholarship_info:
-  - text: "Yes, we offer scholarships based on merit, sports achievements, and financial need. You can find all the details and application forms on our admissions website."
-  - text: "We have several scholarship programs, including one for top-ranking students and another for athletes. The application deadline is typically in June. I recommend checking the official website for the latest updates."
+    - text: "Yes, we offer scholarships based on merit, sports achievements, and financial need. You can find all the details and application forms on our admissions website."
+    - text: "We have several scholarship programs, including one for top-ranking students and another for athletes. The application deadline is typically in June. I recommend checking the official website for the latest updates."
 
   utter_timetable_info:
-  - text: "The timetable for the {course} in the {department} department is available on the student portal. You can log in with your credentials to view the class schedule."
-  - text: "Your class schedule for {course} {year} in the {department} department can be found on the university's academic portal."
-  - text: "The timetable for {course} is available online. Can you tell me your year and department to help you find it?"
+    - text: "The timetable for the {course} in the {department} department is available on the student portal. You can log in with your credentials to view the class schedule."
+    - text: "Your class schedule for {course} {year} in the {department} department can be found on the university's academic portal."
+    - text: "The timetable for {course} is available online. Can you tell me your year and department to help you find it?"
 
   utter_event_details:
     - text: "Spring Fest is the annual social and cultural festival of IIT Kharagpur, known for its grand pro-shows, concerts, and competitions."
@@ -131,10 +130,10 @@ responses:
     - text: "The winners of each competition are announced on the official Spring Fest website and social media channels."
 
   utter_event_date:
-    - text: "Spring Fest 2025 will be held from 10th March to 12th March at IIT Kharagpur."  
+    - text: "Spring Fest 2025 will be held from 10th March to 12th March at IIT Kharagpur."
 
   utter_specific_event_info:
-    - text: "Here’s some info about {event_name}."  
+    - text: "Here’s some info about {event_name}."
 
 forms:
   fee_form:
@@ -154,14 +153,14 @@ actions:
   - utter_fee_info
   - utter_scholarship_info
   - utter_timetable_info
-  - utter_event_date           # 👈 add this
+  - utter_event_date # 👈 add this
   - utter_event_details
   - utter_about_shops
   - utter_emergency_info
   - utter_sub_events
   - utter_winners_general
   - validate_fee_form
-  - utter_specific_event_info 
+  - utter_specific_event_info
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
