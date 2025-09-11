@@ -17,6 +17,19 @@ _Project under construction..._
 
 # local testing
 
+## Setup
+
+Checking everything and gluing it together
+
+### Checklist
+
+- frontend: works needs integration with backend and google translate API integration
+- backend: under construction
+- ai: works (???)
+- db: fine
+
+### FYIs
+
 - remember to run each python project in their dedicated venv
 - tensorflow is a requirement here, so that is the one that will be taking the max amount of time to begin with.
 
