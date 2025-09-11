@@ -15,9 +15,7 @@ _Project under construction..._
 - rasa for context recognition
 - frontend in react.js
 
-# local testing
-
-## Setup
+## LOCAL TESTING: Setup
 
 Checking everything and gluing it together
 
