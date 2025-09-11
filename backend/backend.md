@@ -13,7 +13,7 @@ def log_conversation(session_id, user_text, user_lang, bot_text, bot_lang):
 Next:
   uses django_setup.py then imports logs.models and calls a log_conversation(...) helper function.
 
-SessionMessage Table (combines session and user message)
+# SessionMessage Table (combines session and user message)
 
 Field Name  -  Type -  Description 
 id - AutoField (PK)  -  DB unique ID
@@ -24,7 +24,7 @@ detected_language -  CharField(10)  -   Language code of the user message (en, h
 timestamp  -   DateTimeField  -   When message was sent
 meta  -    JSONField (optional)  -   Optional info: user id, device, message id, etc.
 
-BotResponse Table
+# BotResponse Table
 Field Name  -  Type  -  Description
 id  -  AutoField (PK)  -  DB unique ID
 session_message   -   ForeignKey → SessionMessage   -  Which user message this is responding to
@@ -37,3 +37,4 @@ timestamp  -  DateTimeField  -  When bot responded
 meta  -  JSONField (optional)   -  Extra info: entities, slots, fallback reason, etc.
 
     
+
