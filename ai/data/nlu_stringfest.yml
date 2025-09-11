@@ -1,0 +1,59 @@
+version: "3.1"
+nlu:
+# General event inquiries
+- intent: ask_event_date
+  examples: |
+    - when is springfest?
+    - what is the date for the fest?
+    - after how many days is springfest?
+    - when does springfest start?
+
+- intent: ask_event_details
+  examples: |
+    - what is springfest?
+    - tell me about the event.
+    - give me some information on the fest.
+    - what's special about springfest?
+
+- intent: ask_emergency_info
+  examples: |
+    - what is the medical helpline?
+    - where is the first aid station?
+    - what is the emergency number?
+    - I need help, what's the helpline number?
+    - emergency contact for springfest.
+
+- intent: ask_about_shops
+  examples: |
+    - are there food stalls at springfest?
+    - what shops are there?
+    - tell me about the shopping at the fest.
+    - are there merchandise stalls?
+
+# Sub-events and competitions
+- intent: ask_sub_events
+  examples: |
+    - what are the sub-events of springfest?
+    - tell me about the events and competitions.
+    - what are the main competitions?
+    - which events will be there?
+
+- intent: ask_specific_sub_event_info
+  examples: |
+    - tell me about the competition [Rivellic](event_name).
+    - what is the schedule for [Wildfire](event_name)?
+    - when is the [dance competition](event_type)?
+    - what are the rules for [K-Pop competition](competition)?
+
+# Winner-related inquiries
+- intent: ask_winner
+  examples: |
+    - who won the [dance competition](competition)?
+    - who are the winners?
+    - who was the winner of [Rivellic](event_name)?
+    - last year's winners?
+
+- intent: ask_last_year_winners
+  examples: |
+    - who were the winners last year?
+    - can you tell me the winners of the previous year?

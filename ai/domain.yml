@@ -14,6 +14,14 @@ intents:
   - ask_course
   - ask_department
   - ask_degree
+  - ask_event_date
+  - ask_event_details
+  - ask_emergency_info
+  - ask_about_shops
+  - ask_sub_events
+  - ask_specific_sub_event_info
+  - ask_winner
+  - ask_last_year_winners
 
 entities:
   - course
@@ -21,8 +29,18 @@ entities:
   - degree
   - scholarship_type
   - year
+  - event_name
+  - event_type
+  - competition
+
 
 slots:
+  event_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: event_name
   course:
     type: text
     influence_conversation: true
@@ -48,7 +66,8 @@ responses:
 
   utter_greet:
   - text: "Hey! How are you?"
-
+  - text: "Hello! How can I help you with information about the fest?"
+  - text: "Hi there! What would you like to know about the event?"
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
@@ -95,6 +114,21 @@ responses:
   - text: "The timetable for the {course} in the {department} department is available on the student portal. You can log in with your credentials to view the class schedule."
   - text: "Your class schedule for {course} {year} in the {department} department can be found on the university's academic portal."
   - text: "The timetable for {course} is available online. Can you tell me your year and department to help you find it?"
+
+  utter_event_details:
+    - text: "Spring Fest is the annual social and cultural festival of IIT Kharagpur, known for its grand pro-shows, concerts, and competitions."
+
+  utter_about_shops:
+    - text: "Yes, there are a variety of food stalls, merchandise booths, and other vendor shops at the fest, located near the main grounds."
+
+  utter_emergency_info:
+    - text: "For any medical or general emergencies, please contact the helpline at +91 9876543210. The main first-aid station is located near the Student Activity Centre."
+
+  utter_sub_events:
+    - text: "The fest features a wide range of events including Rivellic (dance), Wildfire (music), Nukkad Natak (drama), and many more competitions."
+
+  utter_winners_general:
+    - text: "The winners of each competition are announced on the official Spring Fest website and social media channels."
 
 forms:
   fee_form:
