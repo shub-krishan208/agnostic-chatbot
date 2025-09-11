@@ -1,12 +1,49 @@
 version: "3.1"
 stories:
 
-- story: User asks for specific sub-event info
-  steps:
-  - intent: ask_specific_sub_event_info
-  - action: action_ask_specific_event
+# - story: User asks for specific sub-event info
+#   steps:
+#   - intent: ask_specific_sub_event_info
+#   - action: action_ask_specific_event
 
 - story: User asks about event date
   steps:
   - intent: ask_event_date
-  - action: action_ask_event_date
+  - action: utter_event_date
+
+- story: User asks for specific sub-event info
+  steps:
+  - intent: ask_specific_sub_event_info
+  - action: utter_specific_event_info
+
+- story: Ask about shops
+  steps:
+  - intent: ask_about_shops
+  - action: utter_about_shops  
+
+- story: User asks emergency info after greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_emergency_info
+  - action: utter_emergency_info  
+
+- story: User asks event details
+  steps:
+  - intent: ask_event_details
+  - action: utter_event_details
+
+- story: User asks sub-events
+  steps:
+  - intent: ask_sub_events
+  - action: utter_sub_events  
+
+- story: User asks winners
+  steps:
+  - intent: ask_winner
+  - action: utter_winners_general  
+
+- story: User asks last year's winners
+  steps:
+  - intent: ask_last_year_winners
+  - action: utter_winners_general
