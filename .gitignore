@@ -3,3 +3,5 @@ random.txt
 .env
 rasa_project
 .rasa
+.venv
+.venv.db

@@ -3,6 +3,7 @@
 _Project under construction..._
 
 **roles:**
+
 - @yashika: ai
 - @saksham: frontend
 - @animesh: database
@@ -10,7 +11,10 @@ _Project under construction..._
 
 ## tech stack:
 
-- mostly python 
+- mostly python
 - rasa for context recognition
 - frontend in react.js
 
+# local testing
+
+- remember to run each python project in their dedicated venv
