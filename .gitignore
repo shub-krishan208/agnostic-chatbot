@@ -5,3 +5,5 @@ rasa_project
 .rasa
 .venv
 .venv.db
+lib64
+pyenv.cfg
