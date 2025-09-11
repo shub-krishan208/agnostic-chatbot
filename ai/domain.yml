@@ -130,6 +130,12 @@ responses:
   utter_winners_general:
     - text: "The winners of each competition are announced on the official Spring Fest website and social media channels."
 
+  utter_event_date:
+    - text: "Spring Fest 2025 will be held from 10th March to 12th March at IIT Kharagpur."  
+
+  utter_specific_event_info:
+    - text: "Here’s some info about {event_name}."  
+
 forms:
   fee_form:
     required_slots:
@@ -148,8 +154,14 @@ actions:
   - utter_fee_info
   - utter_scholarship_info
   - utter_timetable_info
+  - utter_event_date           # 👈 add this
+  - utter_event_details
+  - utter_about_shops
+  - utter_emergency_info
+  - utter_sub_events
+  - utter_winners_general
   - validate_fee_form
-
+  - utter_specific_event_info 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

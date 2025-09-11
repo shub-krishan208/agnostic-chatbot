@@ -14,6 +14,8 @@ nlu:
     - tell me about the event.
     - give me some information on the fest.
     - what's special about springfest?
+    - Tell me about the [dance](event_type) competition
+    - When is the [music](event_type) event happening?
 
 - intent: ask_emergency_info
   examples: |
